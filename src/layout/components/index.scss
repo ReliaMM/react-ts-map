@@ -1,0 +1,11 @@
+.ant-menu-item.menu__level > a {
+  display: inline;
+}
+.menu__level {
+  & > a{
+    display: inline;
+  }
+}
+.logo__img {
+  width: 32px;
+}

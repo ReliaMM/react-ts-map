@@ -17,6 +17,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "rootDirs": ["./src"],
+    "baseUrl": "./src",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@views/*": ["views/*"],
+      "@layout/*": ["layout/*"],
+  },
     "jsx": "preserve"
   },
   "include": [
