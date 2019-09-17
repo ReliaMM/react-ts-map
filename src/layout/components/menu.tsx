@@ -6,8 +6,6 @@ import { withRouter} from  'react-router-dom'
 import styles from './index.scss'
 const { SubMenu }  = Menu
 const { Sider } = Layout
-
-console.log(styles)
 class GlobalMenu extends React.Component<any, any>  {
   
   state = {
@@ -61,12 +59,11 @@ class GlobalMenu extends React.Component<any, any>  {
       defaultSelectedKeys: [defaultSelectedKeys ? defaultSelectedKeys.key : defaultOpenKeys ? defaultOpenKeys.key : '']
     }
   }
-  
-  getMenus = (data: any, ParentPath = '') => {
+  getMenus = ({ data, ParentPath = '', collapsed }: any) => {
     return data.map(({key, icon, name, path, children}: any) => {
       if (!children) {
         return (
-          <Menu.Item key={key} className="menu__level">
+          <Menu.Item key={key} className={ collapsed ? styles.menuLevelCollapsed: styles.menu__level }>
           {
            icon ? <Icon type={icon} /> : ''
           }
@@ -86,7 +83,7 @@ class GlobalMenu extends React.Component<any, any>  {
             }
           >
           {
-            this.getMenus(children, path)
+            this.getMenus({ data: children, ParentPath: path, collapsed })
           }
          </SubMenu>
         )
@@ -96,15 +93,17 @@ class GlobalMenu extends React.Component<any, any>  {
 
   render() {
     let { location } = this.props
-    const { collapsed} = this.props.data
-    const menuItems = this.getMenus(this.state.menuList)
+    const { collapsed } = this.props.data
+    const menuItems = this.getMenus({ data: this.state.menuList, collapsed })
     let { defaultOpenKeys, defaultSelectedKeys = []} = this.setDefaultMenu(location.hash)
     return (
-      <Sider trigger={null} collapsible
-       collapsed={collapsed}
-       >
-      <div className="logo" >
-        <img className={styles.logo__img} alt="path" src={AsideLogo}/>
+      <Sider 
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+      >
+      <div className={styles.logo} >
+        <img className={styles.logoImg} alt="path" src={AsideLogo}/>
       </div>
         <Menu
           defaultSelectedKeys = {defaultSelectedKeys}

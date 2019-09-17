@@ -3,9 +3,8 @@ import React from 'react'
 import { Layout, Icon, Button } from 'antd'
 import GlobalMenu from './components/menu'
 import { setVisibilityAsider } from '../actions'
-import './default.scss'
+import styles from './default.scss'
 const { Header, Content } = Layout
-
 class GlobalLayout extends React.Component<any, any> {
   state = {height: 0, width: 0}
     
@@ -17,20 +16,20 @@ class GlobalLayout extends React.Component<any, any> {
   render() {
     const { visibilityAsider } = this.props
     return (
-      <Layout id="components-layout-demo-custom-trigger">
+      <Layout className={styles.sectionLayout}>
         <GlobalMenu data={{collapsed: visibilityAsider}}/>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
             <Icon
-              className="trigger"
+              className={styles.trigger}
               type={ visibilityAsider ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
           </Header>
           <Content
-            className="global-content"
+            className={styles.globalContent}
             id="content"
-          >
+            >
             content
             <Button>生成热力图</Button>
           </Content>

@@ -1,27 +1,16 @@
-#components-layout-demo-custom-trigger .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-#components-layout-demo-custom-trigger .trigger:hover {
-  color: $--color-primary;
- 
-}
-#components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  margin: 16px;
-  color: #fff; 
-  font-size: 18px;
-  text-align: center;
-  line-height: 32px;
-}
-.ant-menu-inline-collapsed {
-  .ant-menu-item > a {
-    display: none;
+.section-layout {
+  .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .trigger:hover {
+    color: $--color-primary;
   }
 }
+
 .global-content {
   margin: 24px 16px;
   padding: 24px;

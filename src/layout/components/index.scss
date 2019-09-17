@@ -1,11 +1,22 @@
-.ant-menu-item.menu__level > a {
-  display: inline;
-}
 .menu__level {
   & > a{
     display: inline;
   }
 }
+.menu__level--collapsed {
+  & > a{
+    display: none;
+  }
+}
 .logo__img {
   width: 32px;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  color: #fff; 
+  font-size: 18px;
+  text-align: center;
+  line-height: 32px;
 }

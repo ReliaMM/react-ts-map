@@ -1,6 +1,6 @@
-declare const styles: {
-  readonly "menu__level": string;
-  readonly "logo__img": string;
-};
-export = styles;
-
+export const menu__level: string;
+export const menuLevel: string;
+export const menuLevelCollapsed: string;
+export const logo__img: string;
+export const logoImg: string;
+export const logo: string;

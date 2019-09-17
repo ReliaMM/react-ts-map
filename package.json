@@ -49,6 +49,7 @@
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
     "sass-loader": "^7.1.0",
-    "sass-resources-loader": "^2.0.1"
+    "sass-resources-loader": "^2.0.1",
+    "typings-for-css-modules-loader": "^1.7.0"
   }
 }

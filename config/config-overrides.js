@@ -18,15 +18,31 @@ module.exports = override(
     }
   }),
   (config) => {
+    config.module.rules[2].oneOf[5].exclude = 
+    [
+      /\.module\.(scss|sass)$/,
+      path.resolve(__dirname, '../src/assets/styles')
+    ]
+    config.module.rules[2].oneOf[5].use[1] = {
+      loader: 'typings-for-css-modules-loader',
+      options: {
+        modules: true,
+        namedExport: true,
+        camelCase: true,
+        sass: true
+      }
+    }
     config.module.rules[2].oneOf[5].use.push({
-        loader: 'sass-resources-loader',
-        options: {
-          resources: [
-            'src/assets/styles/variables.scss',
-            'src/assets/styles/mixins.scss'
-          ]
-        }
+      loader: 'sass-resources-loader',
+      options: {
+        resources: [
+          'src/assets/styles/variables.scss',
+          'src/assets/styles/mixins.scss'
+        ]
+      }
     })
+    console.log(config.module.rules[2].oneOf[5])
+    // console.log(aa)
     return config
   }
 )
