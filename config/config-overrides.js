@@ -41,8 +41,6 @@ module.exports = override(
         ]
       }
     })
-    console.log(config.module.rules[2].oneOf[5])
-    // console.log(aa)
     return config
   }
 )
