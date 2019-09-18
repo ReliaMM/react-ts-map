@@ -5,6 +5,7 @@ import GlobalMenu from './components/menu'
 import { setVisibilityAsider } from '../actions'
 import styles from './default.scss'
 const { Header, Content } = Layout
+console.log(styles)
 class GlobalLayout extends React.Component<any, any> {
   state = {height: 0, width: 0}
     

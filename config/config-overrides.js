@@ -1,5 +1,7 @@
-const { override, fixBabelImports, addWebpackAlias, addLessLoader } = require('customize-cra')
+const { override, fixBabelImports,addWebpackPlugin, addWebpackAlias, addLessLoader } = require('customize-cra')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+
 module.exports = override(
   fixBabelImports('import', {
     libraryName: 'antd',
@@ -17,14 +19,25 @@ module.exports = override(
       '@primary-color': '#1DA57A'
     }
   }),
+  addWebpackPlugin(
+    new HtmlWebpackPlugin({
+      title: '斑马路线排划管理平台',
+      filename: 'index.blade.php',
+      template: path.join(__dirname, '../public/index.html') // 指定模板路径
+    })
+  ),
   (config) => {
+    // config.output.path = path.resolve(__dirname, '../test') // 打包路径 修改路径后，public依然打包到build路径@todo
+    // config.output.publicPath =  './'或者package.json配置 homepage // 打包路径
+
     config.module.rules[2].oneOf[5].exclude = 
     [
       /\.module\.(scss|sass)$/,
       path.resolve(__dirname, '../src/assets/styles')
     ]
+    // path.resolve(__dirname, '../src')
     config.module.rules[2].oneOf[5].use[1] = {
-      loader: 'typings-for-css-modules-loader',
+      loader: path.resolve(__dirname, '../node_modules/typings-for-css-modules-loader'),
       options: {
         modules: true,
         namedExport: true,
@@ -41,6 +54,8 @@ module.exports = override(
         ]
       }
     })
+    // console.log(config.module.rules[2].oneOf[5])
+    // console.log(aa)
     return config
   }
 )
