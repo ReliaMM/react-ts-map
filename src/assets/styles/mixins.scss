@@ -5,10 +5,12 @@
     content: '';
     display: table;
   }
-  &:after {
+
+  &::after {
     clear: both;
   }
 }
+
 @mixin hover {
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);

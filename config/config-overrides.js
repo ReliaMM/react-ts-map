@@ -1,4 +1,4 @@
-const { override, fixBabelImports,addWebpackPlugin, addWebpackAlias, addLessLoader } = require('customize-cra')
+const { override, fixBabelImports, addWebpackPlugin, addPostcssPlugins, addWebpackAlias, addLessLoader } = require('customize-cra')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
@@ -26,10 +26,19 @@ module.exports = override(
       template: path.join(__dirname, '../public/index.html') // 指定模板路径
     })
   ),
+  // addPostcssPlugins (
+    // [require('autoprefixer')],
+    // [require('postcss-preset-env')({
+      // autoprefixer: {
+        // flexbox: 'no-2009',
+      // },
+      // stage: 1000,
+    // })]
+  // ),s
   (config) => {
     // config.output.path = path.resolve(__dirname, '../test') // 打包路径 修改路径后，public依然打包到build路径@todo
     // config.output.publicPath =  './'或者package.json配置 homepage // 打包路径
-
+    
     config.module.rules[2].oneOf[5].exclude = 
     [
       /\.module\.(scss|sass)$/,
@@ -37,7 +46,8 @@ module.exports = override(
     ]
     // path.resolve(__dirname, '../src')
     config.module.rules[2].oneOf[5].use[1] = {
-      loader: path.resolve(__dirname, '../node_modules/typings-for-css-modules-loader'),
+      // loader: path.resolve(__dirname, '../node_modules/typings-for-css-modules-loader'),
+      loader: 'typings-for-css-modules-loader',
       options: {
         modules: true,
         namedExport: true,
@@ -54,7 +64,24 @@ module.exports = override(
         ]
       }
     })
-    // console.log(config.module.rules[2].oneOf[5])
+    config.module.rules[2].oneOf[5].use[2].options.plugins = () => [
+      // require('postcss-preset-env')({
+      //   autoprefixer: {
+      //     flexbox: 'no-2009',
+      //   },
+      //   stage: 3,
+      // }),
+    ]
+    config.module.rules[2].oneOf[3].use[2].options.plugins = () => [
+      // require('postcss-preset-env')({
+      //   autoprefixer: {
+      //     flexbox: 'no-2009',
+      //   },
+      //   stage: 3,
+      // }),
+    ]
+    // console.log(aa)
+    console.log(config.module.rules[2].oneOf)
     // console.log(aa)
     return config
   }
