@@ -1,10 +1,11 @@
 import React from 'react'
 import GlobalLayout from './layout/default'
-import './assets/styles/common.scss'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './reducers'
-let store = createStore(rootReducer)
+import './assets/styles/common.scss'
+
+const store = createStore(rootReducer)
 
 const App: React.FC = () => {
   return (

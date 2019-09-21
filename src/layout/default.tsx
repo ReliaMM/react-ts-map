@@ -5,10 +5,9 @@ import GlobalMenu from './components/menu'
 import { setVisibilityAsider } from '../actions'
 import styles from './default.scss'
 const { Header, Content } = Layout
-console.log(styles)
 class GlobalLayout extends React.Component<any, any> {
-  state = {height: 0, width: 0}
-    
+  state = { height: 0, width: 0 }
+
   toggle = () => {
     const { visibilityAsider, dispatch } = this.props
     dispatch(setVisibilityAsider(!visibilityAsider))
@@ -18,19 +17,16 @@ class GlobalLayout extends React.Component<any, any> {
     const { visibilityAsider } = this.props
     return (
       <Layout className={styles.sectionLayout}>
-        <GlobalMenu data={{collapsed: visibilityAsider}}/>
+        <GlobalMenu data={{ collapsed: visibilityAsider }} />
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
             <Icon
               className={styles.trigger}
-              type={ visibilityAsider ? 'menu-unfold' : 'menu-fold'}
+              type={visibilityAsider ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
           </Header>
-          <Content
-            className={styles.globalContent}
-            id="content"
-            >
+          <Content className={styles.globalContent} id="content">
             content
             <Button>生成热力图</Button>
           </Content>
@@ -39,7 +35,7 @@ class GlobalLayout extends React.Component<any, any> {
     )
   }
 }
-function mapStateToProps(state: { visibilityAsider: any; }) {
+function mapStateToProps(state: { visibilityAsider: any }) {
   const { visibilityAsider } = state
   return {
     visibilityAsider
